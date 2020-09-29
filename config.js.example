@@ -1,0 +1,16 @@
+module.exports = {
+  // BIP39 mnemonic phrase
+  MNEMONIC: "",
+  // INFURA API key
+  INFURA_KEY: "",
+  // Token Name
+  TOKEN_NAME: "My Awesome Token",
+  // Token Version
+  TOKEN_VERSION: "1",
+  // Token Symbol
+  TOKEN_SYMBOL: "TOKEN",
+  // Token Decimals
+  TOKEN_DECIMALS: 18,
+  // Total Supply
+  TOKEN_TOTAL_SUPPLY: "10000000000000000000000000"
+};
