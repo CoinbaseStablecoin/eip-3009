@@ -7,11 +7,11 @@ import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
 
 import { IERC20Internal } from "./lib/IERC20Internal.sol";
-import { EIP0000 } from "./lib/EIP0000.sol";
+import { EIP0000Expanded } from "./lib/EIP0000Expanded.sol";
 import { EIP2612 } from "./lib/EIP2612.sol";
 import { EIP712 } from "./lib/EIP712.sol";
 
-contract Token is IERC20Internal, EIP0000, EIP2612 {
+contract Token is IERC20Internal, EIP0000Expanded, EIP2612 {
     using SafeMath for uint256;
     using Address for address;
 
@@ -188,136 +188,6 @@ contract Token is IERC20Internal, EIP0000, EIP2612 {
     {
         _decreaseAllowance(msg.sender, spender, subtractedValue);
         return true;
-    }
-
-    /**
-     * @notice Transfer tokens with a signed authorization
-     * @param from          Payer's address (Authorizer)
-     * @param to            Payee's address
-     * @param value         Amount to be transferred
-     * @param validAfter    The time after which this is valid (unix time)
-     * @param validBefore   The time before which this is valid (unix time)
-     * @param nonce         Unique nonce
-     * @param v             v of the signature
-     * @param r             r of the signature
-     * @param s             s of the signature
-     */
-    function transferWithAuthorization(
-        address from,
-        address to,
-        uint256 value,
-        uint256 validAfter,
-        uint256 validBefore,
-        bytes32 nonce,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {
-        _transferWithAuthorization(
-            from,
-            to,
-            value,
-            validAfter,
-            validBefore,
-            nonce,
-            v,
-            r,
-            s
-        );
-    }
-
-    /**
-     * @notice Increase allowance with a signed authorization
-     * @param owner         Token owner's address (Authorizer)
-     * @param spender       Spender's address
-     * @param increment     Amount of increase in allowance
-     * @param validAfter    The time after which this is valid (unix time)
-     * @param validBefore   The time before which this is valid (unix time)
-     * @param nonce         Unique nonce
-     * @param v             v of the signature
-     * @param r             r of the signature
-     * @param s             s of the signature
-     */
-    function increaseAllowanceWithAuthorization(
-        address owner,
-        address spender,
-        uint256 increment,
-        uint256 validAfter,
-        uint256 validBefore,
-        bytes32 nonce,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {
-        _increaseAllowanceWithAuthorization(
-            owner,
-            spender,
-            increment,
-            validAfter,
-            validBefore,
-            nonce,
-            v,
-            r,
-            s
-        );
-    }
-
-    /**
-     * @notice Decrease allowance with a signed authorization
-     * @param owner         Token owner's address (Authorizer)
-     * @param spender       Spender's address
-     * @param decrement     Amount of decrease in allowance
-     * @param validAfter    The time after which this is valid (unix time)
-     * @param validBefore   The time before which this is valid (unix time)
-     * @param nonce         Unique nonce
-     * @param v             v of the signature
-     * @param r             r of the signature
-     * @param s             s of the signature
-     */
-    function decreaseAllowanceWithAuthorization(
-        address owner,
-        address spender,
-        uint256 decrement,
-        uint256 validAfter,
-        uint256 validBefore,
-        bytes32 nonce,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {
-        _decreaseAllowanceWithAuthorization(
-            owner,
-            spender,
-            decrement,
-            validAfter,
-            validBefore,
-            nonce,
-            v,
-            r,
-            s
-        );
-    }
-
-    /**
-     * @notice Update allowance with a signed permit
-     * @param owner       Token owner's address (Authorizer)
-     * @param spender     Spender's address
-     * @param value       Amount of allowance
-     * @param deadline    Expiration time, seconds since the epoch
-     * @param v           v of the signature
-     * @param r           r of the signature
-     * @param s           s of the signature
-     */
-    function permit(
-        address owner,
-        address spender,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {
-        _permit(owner, spender, value, deadline, v, r, s);
     }
 
     function _transfer(

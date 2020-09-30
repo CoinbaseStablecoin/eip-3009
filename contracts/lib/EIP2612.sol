@@ -45,7 +45,7 @@ abstract contract EIP2612 is IERC20Internal, EIP712Domain {
     }
 
     /**
-     * @notice Verify a signed approval permit and execute if valid
+     * @notice update allowance with a signed permit
      * @param owner     Token owner's address (Authorizer)
      * @param spender   Spender's address
      * @param value     Amount of allowance
@@ -54,7 +54,7 @@ abstract contract EIP2612 is IERC20Internal, EIP712Domain {
      * @param r         r of the signature
      * @param s         s of the signature
      */
-    function _permit(
+    function permit(
         address owner,
         address spender,
         uint256 value,
@@ -62,8 +62,7 @@ abstract contract EIP2612 is IERC20Internal, EIP712Domain {
         uint8 v,
         bytes32 r,
         bytes32 s
-    ) internal {
-        require(msg.sender != address(this), "Caller is this contract");
+    ) external {
         require(deadline >= now, "EIP2612: permit is expired");
 
         bytes memory data = abi.encode(
@@ -76,7 +75,7 @@ abstract contract EIP2612 is IERC20Internal, EIP712Domain {
         );
         require(
             EIP712.recover(DOMAIN_SEPARATOR, v, r, s, data) == owner,
-            ": invalid signature"
+            "EIP2612: invalid signature"
         );
 
         _approve(owner, spender, value);
