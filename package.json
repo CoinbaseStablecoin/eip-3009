@@ -1,7 +1,7 @@
 {
-  "name": "eip-0000",
+  "name": "eip-3009",
   "version": "1.0.0",
-  "description": "An ERC20 token contract that implements EIP-0000 and EIP-2612",
+  "description": "An ERC20 token contract that implements EIP-3009 and EIP-2612",
   "scripts": {
     "setup": "git config core.hooksPath .githooks",
     "compile": "truffle compile",

@@ -1,6 +1,8 @@
-# EIP-0000
+# EIP-3009
 
-An ERC20 token contract that implements EIP-0000 and EIP-2612
+An ERC20 token contract that implements
+[EIP-3009](https://github.com/ethereum/EIPs/issues/3010) and
+[EIP-2612](https://eips.ethereum.org/EIPS/eip-2612).
 
 ## Setup
 

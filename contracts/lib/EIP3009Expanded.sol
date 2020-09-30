@@ -24,12 +24,12 @@
 
 pragma solidity 0.6.12;
 
-import { EIP0000 } from "./EIP0000.sol";
+import { EIP3009 } from "./EIP3009.sol";
 import { IERC20Internal } from "./IERC20Internal.sol";
 import { EIP712Domain } from "./EIP712Domain.sol";
 import { EIP712 } from "./EIP712.sol";
 
-abstract contract EIP0000Expanded is IERC20Internal, EIP712Domain, EIP0000 {
+abstract contract EIP3009Expanded is IERC20Internal, EIP712Domain, EIP3009 {
     // keccak256("ApproveWithAuthorization(address owner,address spender,uint256 value,uint256 validAfter,uint256 validBefore,bytes32 nonce)")
     bytes32
         public constant APPROVE_WITH_AUTHORIZATION_TYPEHASH = 0x808c10407a796f3ef2c7ea38c0638ea9d2b8a1c63e3ca9e1f56ce84ae59df73c;
