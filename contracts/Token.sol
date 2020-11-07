@@ -7,11 +7,11 @@ import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
 
 import { IERC20Internal } from "./lib/IERC20Internal.sol";
-import { EIP3009Expanded } from "./lib/EIP3009Expanded.sol";
+import { EIP3009 } from "./lib/EIP3009.sol";
 import { EIP2612 } from "./lib/EIP2612.sol";
 import { EIP712 } from "./lib/EIP712.sol";
 
-contract Token is IERC20Internal, EIP3009Expanded, EIP2612 {
+contract Token is IERC20Internal, EIP3009, EIP2612 {
     using SafeMath for uint256;
     using Address for address;
 
